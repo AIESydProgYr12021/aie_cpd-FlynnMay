@@ -91,6 +91,10 @@ PrefabInstance:
       propertyPath: pivotPoint
       value: 
       objectReference: {fileID: 9109645535627537210}
+    - target: {fileID: 736768733227116797, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4547db0b20414a249b84b455d14d0910, type: 2}
     - target: {fileID: 736768733227116798, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_Name
       value: TrailObj
@@ -98,6 +102,18 @@ PrefabInstance:
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -157,6 +173,10 @@ PrefabInstance:
       propertyPath: pivotPoint
       value: 
       objectReference: {fileID: 9109645535627537210}
+    - target: {fileID: 736768733227116797, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4547db0b20414a249b84b455d14d0910, type: 2}
     - target: {fileID: 736768733227116798, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_Name
       value: TrailObj (3)
@@ -164,6 +184,18 @@ PrefabInstance:
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -223,6 +255,10 @@ PrefabInstance:
       propertyPath: pivotPoint
       value: 
       objectReference: {fileID: 9109645535627537210}
+    - target: {fileID: 736768733227116797, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4547db0b20414a249b84b455d14d0910, type: 2}
     - target: {fileID: 736768733227116798, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_Name
       value: TrailObj (1)
@@ -230,6 +266,18 @@ PrefabInstance:
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,6 +337,10 @@ PrefabInstance:
       propertyPath: pivotPoint
       value: 
       objectReference: {fileID: 9109645535627537210}
+    - target: {fileID: 736768733227116797, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4547db0b20414a249b84b455d14d0910, type: 2}
     - target: {fileID: 736768733227116798, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_Name
       value: TrailObj (2)
@@ -296,6 +348,18 @@ PrefabInstance:
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 736768733227116799, guid: 55ce96f5da612244b9959a4b3bd284b8, type: 3}
       propertyPath: m_LocalPosition.x

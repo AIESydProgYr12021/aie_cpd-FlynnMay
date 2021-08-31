@@ -20,6 +20,7 @@ public class BeamReflector : BeamInteractor
 
         Vector3 dir = Vector3.Reflect(-hit.transform.forward, hit.collider.transform.forward.normalized);
 
+        // Stack Overflow
         sender.FindInteractors(transform.position, dir, out rayHit, out beamInteractor);
     }
 

@@ -31,21 +31,22 @@ public class FollowPath : MonoBehaviour
     void Update()
     {
         if (path.Count <= 0)
+        {
+            PathComplete();
             return;
+        }
 
         if (lerpToVector.currentPosition == path[path.Count - 1])
         {
             PathComplete();
-
-            foreach (var act in OnPathEnd)
-            {
-                act?.Invoke();
-            }
         }
     }
 
     void PathComplete()
     {
-    
+        foreach (var act in OnPathEnd)
+        {
+            act?.Invoke();
+        }
     }
 }

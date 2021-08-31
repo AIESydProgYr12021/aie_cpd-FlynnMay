@@ -62,7 +62,7 @@ public class BeamSpawner : MonoBehaviour
     {
         beamCollider = null;
 
-        Debug.DrawRay(pos, dir * 50, Color.green);
+        //Debug.DrawRay(pos, dir * 50, Color.green);
         if (Physics.Raycast(pos, dir, out hit))
         {
             beamCollider = hit.collider.gameObject.GetComponent<BeamInteractor>();

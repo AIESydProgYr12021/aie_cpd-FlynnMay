@@ -72,9 +72,14 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(transform.position, moveDir, out hit, 1) && moveDir != Vector3.zero)
             {
                 GameObject parent = hit.collider.gameObject;
+                
+                while (parent.transform.parent != null)
+                {
+                    if (parent.CompareTag("movable"))
+                        break;
 
-                while (parent.transform.parent != null || parent.transform.parent.CompareTag("movable"))
                     parent = parent.transform.parent.gameObject;
+                }
 
                 SetChildOnCondition(parent, parent.CompareTag("movable"));
             }
