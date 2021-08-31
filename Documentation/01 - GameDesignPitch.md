@@ -2,10 +2,18 @@
 This is a skeleton/reference for a game design pitch. A full design will be much longer!   
 
 ## Working Title
-Your game’s title should communicate the gameplay and the style of the game 
+Lazer Game
+<br>
+<i>
+Your game’s title should communicate the gameplay and the style of the game
+</i>
 
 ## Concept statement  
+Solve a puzzle using only lazers and mirrors.
+<br>
+<i>
 The game in a tweet: one or two sentences at most that say what the game is and why it’s fun.  
+</i>
 
 ## Target audience  
 Age, gender, game or other relevant interests
