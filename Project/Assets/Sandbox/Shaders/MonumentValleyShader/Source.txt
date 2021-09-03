@@ -1,0 +1,2 @@
+https://gist.github.com/bcatcho/09509e31b9cbf24c39ea#file-gradientanddircolor-shader
+https://forum.unity.com/threads/a-free-monument-valley-style-shader.425375/

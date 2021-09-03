@@ -17,11 +17,11 @@ public class BeamReflector : BeamInteractor
         RaycastHit rayHit;
         BeamInteractor beamInteractor;
 
-
-        Vector3 dir = Vector3.Reflect(-hit.transform.forward, hit.collider.transform.forward.normalized);
-
-        // Stack Overflow
-        sender.FindInteractors(transform.position, dir, out rayHit, out beamInteractor);
+        Vector3 incomingVec = hit.point - sender.transform.position;
+        Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
+        
+        // Stack Overflow -- Risk -> reflect loop
+        sender.FindInteractors(transform.position, reflectVec, out rayHit, out beamInteractor);
     }
 
     // Start is called before the first frame update
@@ -33,9 +33,6 @@ public class BeamReflector : BeamInteractor
     // Update is called once per frame
     void Update()
     {
-        if (spawner)
-        {
-            //spawner.foundInteractors
-        }
+
     }
 }
