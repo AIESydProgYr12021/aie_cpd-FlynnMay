@@ -33,7 +33,7 @@ public class LightController : BeamInteractor
 
         GetComponent<Renderer>().material = lightOn ? lightOnMaterial : lightOffMaterial;
     }
-    public override void OnBeamTrigger(RaycastHit hit, BeamSpawner sender)
+    public override void OnBeamTrigger(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
     {
         lightOn = true;
     }

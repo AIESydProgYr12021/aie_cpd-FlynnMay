@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: bff31720e102ab044a1443c1b98c2afb
+  - enabled: 1
+    path: Assets/Sandbox/Scenes/GridTest.unity
+    guid: 38554b91f1988094ab778243ab4d2d95
   m_configObjects: {}

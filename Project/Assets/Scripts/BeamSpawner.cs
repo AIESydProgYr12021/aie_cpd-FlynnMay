@@ -72,7 +72,7 @@ public class BeamSpawner : MonoBehaviour
                 if (!foundInteractors.Contains(beamCollider))
                     foundInteractors.Add(beamCollider);
 
-                beamCollider.OnBeamTrigger(hit, this);
+                beamCollider.OnBeamTrigger(hit, this, pos);
             }
             else
             {
