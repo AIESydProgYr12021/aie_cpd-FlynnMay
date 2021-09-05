@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BeamReflector : BeamInteractor
 {
+    private void Awake()
+    {
+        SetStartPosRot(transform);
+    }
+
     public override void OnBeamExit()
     {
         Debug.Log("Reflector Exit");

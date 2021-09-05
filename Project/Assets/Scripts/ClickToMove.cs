@@ -33,13 +33,12 @@ public class ClickToMove : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (!other.CompareTag("movable"))
+        if (!collision.gameObject.CompareTag("movable"))
             return;
 
-        var rb = other.gameObject.GetComponentInParent<Rigidbody>();
+        var rb = collision.gameObject.GetComponentInParent<Rigidbody>();
         if (rb == null)
             return;
 
@@ -54,10 +53,18 @@ public class ClickToMove : MonoBehaviour
             pushDir = new Vector3(0, 0, transform.forward.z);
 
         RaycastHit dropHit;
-        if (Physics.Raycast(pushDir + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
+        if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
         {
             Vector3 pos = dropHit.collider.gameObject.transform.position;
             LerpToVector lerpToVector = rb.gameObject.GetComponent<LerpToVector>();
+
+            if (dropHit.collider.gameObject.CompareTag("void"))
+            {
+                rb.useGravity = true;
+                Vector3 objPos = rb.gameObject.transform.position;
+                pos = objPos + pushDir;
+                //return;
+            }
 
             if (lerpToVector == null)
             {
@@ -73,6 +80,10 @@ public class ClickToMove : MonoBehaviour
                 lerpToVector.enabled = false;
             });
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+       
     }
 }
 

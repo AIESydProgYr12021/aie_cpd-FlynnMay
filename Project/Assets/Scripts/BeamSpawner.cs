@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamSpawner : MonoBehaviour
+public class BeamSpawner : CustomGameObject
 {
     public float spawnerDelay = 0.5f;
     public float timer = 0;
@@ -11,9 +11,9 @@ public class BeamSpawner : MonoBehaviour
     public List<BeamInteractor> foundInteractors = new List<BeamInteractor>();
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        //beam.GetComponent<LerpToVector>().target = target;
+        SetStartPosRot(transform);
     }
 
     // Update is called once per frame
