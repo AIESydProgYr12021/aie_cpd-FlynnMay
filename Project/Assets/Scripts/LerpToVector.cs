@@ -13,7 +13,7 @@ public class LerpToVector : MonoBehaviour
     public float lerpSpeed = 5.0f;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Awake()
     {
         currentPosition = transform.position;
         targetPosition = currentPosition;
@@ -29,6 +29,7 @@ public class LerpToVector : MonoBehaviour
         {
             lerpTime = 1.0f;
             currentPosition = targetPosition;
+            targetPosition = currentPosition;
 
             foreach (var act in OnTargetReached)
             {

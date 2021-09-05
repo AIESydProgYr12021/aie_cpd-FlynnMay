@@ -10,10 +10,16 @@ public class VoidManager : MonoBehaviour
         var rb = other.gameObject.GetComponentInParent<Rigidbody>();
         if (customGameObject && rb)
         {
-            other.gameObject.transform.position = customGameObject.startPos;
-            other.gameObject.transform.rotation = customGameObject.startRot;
+            rb.gameObject.transform.position = customGameObject.startPos;
+            rb.gameObject.transform.rotation = customGameObject.startRot;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        var lerptoVector = other.GetComponent<LerpToVector>();
+        if (lerptoVector)
+        {
+            lerptoVector.enabled = false;
         }
     }
 }

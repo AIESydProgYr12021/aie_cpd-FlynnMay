@@ -78,6 +78,7 @@ public class ClickToMove : MonoBehaviour
             lerpToVector.OnTargetReached.Add(() =>
             {
                 lerpToVector.enabled = false;
+                Destroy(lerpToVector);
             });
         }
     }

@@ -6,7 +6,7 @@ public class BeamReflector : BeamInteractor
 {
     private void Awake()
     {
-        SetStartPosRot(transform);
+        SetStartPosRot(transform.parent ? transform.parent.transform : transform);
     }
 
     public override void OnBeamExit()
