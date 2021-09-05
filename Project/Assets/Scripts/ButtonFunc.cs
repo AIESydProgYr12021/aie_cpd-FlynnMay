@@ -9,4 +9,9 @@ public class ButtonFunc : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

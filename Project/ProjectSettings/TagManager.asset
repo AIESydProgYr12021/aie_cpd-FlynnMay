@@ -6,6 +6,7 @@ TagManager:
   tags:
   - light
   - movable
+  - portal
   layers:
   - Default
   - TransparentFX
