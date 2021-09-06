@@ -36,10 +36,5 @@ public class LightManager : MonoBehaviour
             }
         }
         portal.SetActive(gameWon);
-
-        //foreach (var spawner in spawners)
-        //{
-        //    spawner
-        //}
     }
 }

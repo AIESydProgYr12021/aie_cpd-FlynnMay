@@ -35,6 +35,13 @@ public class ClickToMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+
+        if (moveableObject)
+        {
+            moveableObject.OnPlayerEnter(gameObject);
+        }
+
         if (!collision.gameObject.CompareTag("movable"))
             return;
 
@@ -42,50 +49,59 @@ public class ClickToMove : MonoBehaviour
         if (rb == null)
             return;
 
-        var pushDir = Vector3.zero;
 
-        float x = Mathf.Abs(transform.forward.x);
-        float z = Mathf.Abs(transform.forward.z);
 
-        if (x >= z)
-            pushDir = new Vector3(transform.forward.x, 0, 0);
-        else
-            pushDir = new Vector3(0, 0, transform.forward.z);
+        //RaycastHit dropHit;
+        //if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
+        //{
+        //    Vector3 pos = dropHit.collider.gameObject.transform.position;
+        //    LerpToVector lerpToVector = rb.gameObject.GetComponent<LerpToVector>();
 
-        RaycastHit dropHit;
-        if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
+        //    if (dropHit.collider.gameObject.CompareTag("void"))
+        //    {
+        //        rb.useGravity = true;
+        //        Vector3 objPos = rb.gameObject.transform.position;
+        //        pos = objPos + pushDir;
+        //        //return;
+        //    }
+
+        //    if (lerpToVector == null)
+        //    {
+        //        lerpToVector = rb.gameObject.AddComponent<LerpToVector>();
+        //    }
+
+        //    lerpToVector.enabled = true;
+        //    lerpToVector.targetPosition = new Vector3(pos.x, rb.gameObject.transform.position.y, pos.z);
+        //    lerpToVector.lerpTime = 0.0f;
+        //    lerpToVector.lerpSpeed = agent.speed + .1f;
+        //    lerpToVector.OnTargetReached.Add(() =>
+        //    {
+        //        lerpToVector.enabled = false;
+        //        Destroy(lerpToVector);
+        //    });
+        //}
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+
+        if (moveableObject)
         {
-            Vector3 pos = dropHit.collider.gameObject.transform.position;
-            LerpToVector lerpToVector = rb.gameObject.GetComponent<LerpToVector>();
-
-            if (dropHit.collider.gameObject.CompareTag("void"))
-            {
-                rb.useGravity = true;
-                Vector3 objPos = rb.gameObject.transform.position;
-                pos = objPos + pushDir;
-                //return;
-            }
-
-            if (lerpToVector == null)
-            {
-                lerpToVector = rb.gameObject.AddComponent<LerpToVector>();
-            }
-
-            lerpToVector.enabled = true;
-            lerpToVector.targetPosition = new Vector3(pos.x, rb.gameObject.transform.position.y, pos.z);
-            lerpToVector.lerpTime = 0.0f;
-            lerpToVector.lerpSpeed = agent.speed + .1f;
-            lerpToVector.OnTargetReached.Add(() =>
-            {
-                lerpToVector.enabled = false;
-                Destroy(lerpToVector);
-            });
+            moveableObject.OnPlayerStay();
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionExit(Collision collision)
     {
-       
+        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+
+        if (moveableObject)
+        {
+            moveableObject.OnPlayerExit();
+        }
     }
+
 }
 
 

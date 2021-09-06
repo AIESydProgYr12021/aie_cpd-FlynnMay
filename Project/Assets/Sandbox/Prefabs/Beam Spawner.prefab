@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2736571607617142936}
   - component: {fileID: 2736571607617142935}
   - component: {fileID: 1812898800}
+  - component: {fileID: 6911897908612396056}
   m_Layer: 0
   m_Name: Beam Spawner
   m_TagString: movable
@@ -109,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05580e56d16f3d34698144bdfcd8f3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
   spawnerDelay: 1
   timer: 0
   beam: {fileID: 9109645535627537209, guid: 4251924819e6c82419d7c6825bd0b025, type: 3}
@@ -129,3 +132,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
+--- !u!114 &6911897908612396056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736571607617142934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e45778879665148a6d1c15c81c7938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
+  rb: {fileID: 1812898800}

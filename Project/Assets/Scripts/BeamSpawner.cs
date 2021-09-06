@@ -1,3 +1,4 @@
+using Assets.Scripts.Interactors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class BeamSpawner : CustomGameObject
     public float timer = 0;
     public GameObject beam;
 
-    public List<BeamInteractor> foundInteractors = new List<BeamInteractor>();
+    public List<CustomGameObject> foundInteractors = new List<CustomGameObject>();
 
     // Start is called before the first frame update
     private void Awake()
@@ -23,7 +24,7 @@ public class BeamSpawner : CustomGameObject
             return;
 
         RaycastHit hit;
-        BeamInteractor beamCollider;
+        IBeamInteractor beamCollider;
 
         FindInteractors(transform.position, transform.forward, out hit, out beamCollider);
 
@@ -41,8 +42,6 @@ public class BeamSpawner : CustomGameObject
             LerpToVector lerpToVector = beamObj.GetComponent<LerpToVector>();
             FollowPath followPath = beamObj.GetComponent<FollowPath>();
 
-            //List<Vector3> path = new List<Vector3>();
-
             foreach (var interactor in foundInteractors)
             {
                 followPath.path.Add(interactor.gameObject.transform.position);
@@ -57,21 +56,23 @@ public class BeamSpawner : CustomGameObject
         }
     }
 
-    public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out BeamInteractor beamCollider)
+    public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out IBeamInteractor beamInteractor)
     {
-        beamCollider = null;
+        beamInteractor = null;
 
         Debug.DrawRay(pos, dir, Color.green);
         if (Physics.Raycast(pos, dir, out hit))
         {
-            beamCollider = hit.collider.gameObject.GetComponent<BeamInteractor>();
+            var obj = hit.collider.gameObject;
+            beamInteractor = obj.GetComponent<IBeamInteractor>();
+            CustomGameObject cObj = obj.GetComponent<CustomGameObject>();
 
-            if (beamCollider)
+            if (beamInteractor != null)
             {
-                if (!foundInteractors.Contains(beamCollider))
-                    foundInteractors.Add(beamCollider);
+                if (!foundInteractors.Contains(cObj))
+                    foundInteractors.Add(cObj);
 
-                beamCollider.OnBeamTrigger(hit, this, pos);
+                beamInteractor.OnBeamStay(hit, this, pos);
             }
             else
             {
@@ -89,7 +90,7 @@ public class BeamSpawner : CustomGameObject
     {
         foreach (var interactor in foundInteractors)
         {
-            interactor.OnBeamExit();
+            interactor.GetComponent<IBeamInteractor>().OnBeamExit();
         }
 
         foundInteractors.Clear();
