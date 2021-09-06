@@ -9,6 +9,7 @@ namespace Assets.Scripts.Interactors
 {
     public interface IBeamInteractor : IInteractor
     {
+        bool Interacting { get; set; }
         void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos);
         void OnBeamStay(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos);
         void OnBeamExit();

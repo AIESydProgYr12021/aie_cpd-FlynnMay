@@ -9,6 +9,9 @@ public class LightController : CustomGameObject, IBeamInteractor
     public Material lightOnMaterial;
     public Material lightOffMaterial;
 
+    bool interacting = false;
+    public bool Interacting { get => interacting; set => interacting = value; }
+
     // Update is called once per frame
     void Update()
     {

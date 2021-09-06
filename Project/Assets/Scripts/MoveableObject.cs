@@ -9,9 +9,8 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
     LerpToVector lerpToVector;
     public Rigidbody rb;
 
-    //bool interactingWithPlayer = false;
-
-    //public bool InteractingWithPlayer { get => interactingWithPlayer; set => interactingWithPlayer = value; }
+    bool interacting = false;
+    public bool Interacting { get => interacting; set => interacting = value; }
 
     private void Start()
     {
@@ -82,16 +81,13 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
 
     public void OnPlayerExit()
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnPlayerStay()
     {
-        throw new System.NotImplementedException();
     }
 
     public void OnPlayerEnter()
     {
-        throw new System.NotImplementedException();
     }
 }

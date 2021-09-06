@@ -72,7 +72,16 @@ public class BeamSpawner : CustomGameObject
                 if (!foundInteractors.Contains(cObj))
                     foundInteractors.Add(cObj);
 
-                beamInteractor.OnBeamStay(hit, this, pos);
+                if (!beamInteractor.Interacting)
+                {
+                    beamInteractor.OnBeamEnter(hit, this, pos);
+                    beamInteractor.Interacting = true;
+                }
+                else
+                {
+                    beamInteractor.OnBeamStay(hit, this, pos);
+                }
+
             }
             else
             {
@@ -88,9 +97,17 @@ public class BeamSpawner : CustomGameObject
 
     private void RunExit()
     {
-        foreach (var interactor in foundInteractors)
+        foreach (var interactorObj in foundInteractors)
         {
-            interactor.GetComponent<IBeamInteractor>().OnBeamExit();
+            IBeamInteractor interactor = interactorObj.GetComponent<IBeamInteractor>();
+            if (interactor != null)
+            {
+                if (interactor.Interacting)
+                {
+                    interactor.OnBeamExit();
+                    interactor.Interacting = false;
+                }
+            }
         }
 
         foundInteractors.Clear();
