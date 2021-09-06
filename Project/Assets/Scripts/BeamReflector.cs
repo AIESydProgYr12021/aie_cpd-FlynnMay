@@ -11,7 +11,7 @@ public class BeamReflector : BeamInteractor
 
     public override void OnBeamExit()
     {
-        Debug.Log("Reflector Exit");
+        //Debug.Log("Reflector Exit");
     }
 
     public override void OnBeamTrigger(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)

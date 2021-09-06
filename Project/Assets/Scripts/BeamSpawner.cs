@@ -55,7 +55,6 @@ public class BeamSpawner : CustomGameObject
             lerpToVector.targetPosition = hit.collider.gameObject.transform.position;
             lerpToVector.lerpTime = 0.0f;
         }
-
     }
 
     public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out BeamInteractor beamCollider)
