@@ -8,8 +8,8 @@ Contributors to the project are strictly limated to AIE Students as part of thei
 
 Members:
  - Flynn May: programmer
- - (example) John Doe: designer
- - (example) Sandra Dee: artist
+ - Thomas Greene: designer
+ - Ruby Andreatta: designer
 
 ## Build Steps:
 The project can currently be built for windows, android and webgl in the following ways:
