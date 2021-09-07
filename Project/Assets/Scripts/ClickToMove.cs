@@ -18,17 +18,20 @@ public class ClickToMove : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (Input.GetMouseButtonDown(0))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            //Outline outline = hit.collider.GetComponent<Outline>();
+            //outline.enabled = true;
+
+            if (Input.GetMouseButtonDown(0))
             {
                 Vector3 pos = hit.collider.gameObject.transform.position;
                 agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z));
                 if (dropParticle)
                 {
                     var drop = Instantiate(dropParticle, null);
-                    drop.transform.position = new Vector3 (pos.x, 0.1f, pos.z);
+                    drop.transform.position = new Vector3(pos.x, 0.1f, pos.z);
                 }
                 agent.path.ClearCorners();
             }
