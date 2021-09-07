@@ -30,6 +30,7 @@ public class ClickToMove : MonoBehaviour
                     var drop = Instantiate(dropParticle, null);
                     drop.transform.position = new Vector3 (pos.x, 0.1f, pos.z);
                 }
+                agent.path.ClearCorners();
             }
         }
     }
@@ -48,8 +49,6 @@ public class ClickToMove : MonoBehaviour
         var rb = collision.gameObject.GetComponentInParent<Rigidbody>();
         if (rb == null)
             return;
-
-
 
         //RaycastHit dropHit;
         //if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))

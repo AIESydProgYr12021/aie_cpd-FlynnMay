@@ -18,6 +18,11 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
     {
         throw new System.NotImplementedException();
@@ -47,6 +52,18 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
             pushDir = new Vector3(dirFromPlayer.x, 0, 0);
         else
             pushDir = new Vector3(0, 0, dirFromPlayer.z);
+
+        RaycastHit otherHit;
+        if (Physics.Raycast(pushDir / 2 + transform.position, pushDir.normalized, out otherHit, 1f))
+        {
+            var moveable = otherHit.collider.GetComponentInParent<MoveableObject>();
+            if (moveable && moveable != this)
+            {
+                //return;
+                moveable.OnPlayerEnter(player);
+            }
+        }
+
 
         RaycastHit dropHit;
         if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
