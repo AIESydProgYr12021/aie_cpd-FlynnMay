@@ -8,6 +8,7 @@ TagManager:
   - movable
   - portal
   - void
+  - GroundTile
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - IgnoreCamRaycast
   - 
   - 
   - 

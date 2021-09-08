@@ -29,7 +29,9 @@ public class BeamSpawner : CustomGameObject
         FindInteractors(transform.position, transform.forward, out hit, out beamCollider);
 
         if (beamCollider == null)
-            return;
+        {
+            RunExit();
+        }
 
 
         timer += Time.deltaTime;
@@ -42,6 +44,11 @@ public class BeamSpawner : CustomGameObject
             LerpToVector lerpToVector = beamObj.GetComponent<LerpToVector>();
             FollowPath followPath = beamObj.GetComponent<FollowPath>();
 
+            if (foundInteractors.Count <= 0)
+            {
+                followPath.path.Add((transform.forward * 10));
+            }
+
             foreach (var interactor in foundInteractors)
             {
                 followPath.path.Add(interactor.gameObject.transform.position);
@@ -51,7 +58,7 @@ public class BeamSpawner : CustomGameObject
             lerpToVector.currentPosition = beamObj.transform.position;
             beamObj.transform.forward = transform.forward;
 
-            lerpToVector.targetPosition = hit.collider.gameObject.transform.position;
+            lerpToVector.targetPosition = followPath.path[0];
             lerpToVector.lerpTime = 0.0f;
         }
     }
@@ -67,6 +74,9 @@ public class BeamSpawner : CustomGameObject
             beamInteractor = obj.GetComponent<IBeamInteractor>();
             CustomGameObject cObj = obj.GetComponent<CustomGameObject>();
 
+            if (cObj == null)
+                return;
+
             if (beamInteractor != null)
             {
                 if (!foundInteractors.Contains(cObj))
@@ -81,18 +91,8 @@ public class BeamSpawner : CustomGameObject
                 {
                     beamInteractor.OnBeamStay(hit, this, pos);
                 }
-
-            }
-            else
-            {
-                RunExit();
             }
         }
-        else
-        {
-            RunExit();
-        }
-
     }
 
     private void RunExit()

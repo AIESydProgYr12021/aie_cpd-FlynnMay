@@ -8,6 +8,7 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
 {
     LerpToVector lerpToVector;
     public Rigidbody rb;
+    public Transform objBase;
 
     bool interacting = false;
     public bool Interacting { get => interacting; set => interacting = value; }
@@ -20,7 +21,31 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
 
     private void Update()
     {
-        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, objBase.forward, out hit, .5f))
+        {
+            rb.useGravity = !hit.collider.CompareTag("GroundTile");
+            if (!rb.useGravity)
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY;
+            }
+        }
+        else
+        {
+            rb.useGravity = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotationY;
+        }
+
+        if (Physics.Raycast(transform.position, objBase.forward, out hit))
+        {
+            if (hit.collider.CompareTag("Player"))
+                rb.useGravity = false;
+
+            if (!rb.useGravity)
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY;
+            }
+        }
     }
 
     public void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)

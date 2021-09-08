@@ -19,10 +19,14 @@ public class ClickToMove : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        int layerMask = 1 << LayerMask.NameToLayer("IgnoreCamRaycast");
+        layerMask = ~layerMask;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             //Outline outline = hit.collider.GetComponent<Outline>();
             //outline.enabled = true;
+            if (!hit.collider.CompareTag("GroundTile"))
+                return;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -39,54 +43,22 @@ public class ClickToMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        MoveableObject moveableObject = other.gameObject.GetComponentInParent<MoveableObject>();
 
         if (moveableObject)
         {
             moveableObject.OnPlayerEnter(gameObject);
         }
-
-        if (!collision.gameObject.CompareTag("movable"))
-            return;
-
-        var rb = collision.gameObject.GetComponentInParent<Rigidbody>();
-        if (rb == null)
-            return;
-
-        //RaycastHit dropHit;
-        //if (Physics.Raycast(pushDir.normalized + rb.gameObject.transform.position, -rb.gameObject.transform.up, out dropHit))
-        //{
-        //    Vector3 pos = dropHit.collider.gameObject.transform.position;
-        //    LerpToVector lerpToVector = rb.gameObject.GetComponent<LerpToVector>();
-
-        //    if (dropHit.collider.gameObject.CompareTag("void"))
-        //    {
-        //        rb.useGravity = true;
-        //        Vector3 objPos = rb.gameObject.transform.position;
-        //        pos = objPos + pushDir;
-        //        //return;
-        //    }
-
-        //    if (lerpToVector == null)
-        //    {
-        //        lerpToVector = rb.gameObject.AddComponent<LerpToVector>();
-        //    }
-
-        //    lerpToVector.enabled = true;
-        //    lerpToVector.targetPosition = new Vector3(pos.x, rb.gameObject.transform.position.y, pos.z);
-        //    lerpToVector.lerpTime = 0.0f;
-        //    lerpToVector.lerpSpeed = agent.speed + .1f;
-        //    lerpToVector.OnTargetReached.Add(() =>
-        //    {
-        //        lerpToVector.enabled = false;
-        //        Destroy(lerpToVector);
-        //    });
-        //}
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+        MoveableObject moveableObject = other.gameObject.GetComponentInParent<MoveableObject>();
 
         if (moveableObject)
         {
@@ -94,9 +66,9 @@ public class ClickToMove : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        MoveableObject moveableObject = collision.gameObject.GetComponentInParent<MoveableObject>();
+        MoveableObject moveableObject = other.gameObject.GetComponentInParent<MoveableObject>();
 
         if (moveableObject)
         {

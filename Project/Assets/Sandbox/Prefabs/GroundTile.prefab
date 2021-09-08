@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 6101158309563351644}
   m_Layer: 0
   m_Name: GroundTile
-  m_TagString: Untagged
+  m_TagString: GroundTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8

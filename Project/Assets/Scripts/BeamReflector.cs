@@ -15,7 +15,7 @@ public class BeamReflector : CustomGameObject, IBeamInteractor
 
     public void OnBeamExit()
     {
-        //Debug.Log("Reflector Exit");
+        //Debug.Log("Reflector Exited Beam");
     }
 
     public void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
