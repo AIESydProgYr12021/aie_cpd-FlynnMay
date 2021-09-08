@@ -46,7 +46,7 @@ public class BeamSpawner : CustomGameObject
 
             if (foundInteractors.Count <= 0)
             {
-                followPath.path.Add((transform.forward * 10));
+                followPath.path.Add(transform.position + (transform.forward * 10));
             }
 
             foreach (var interactor in foundInteractors)

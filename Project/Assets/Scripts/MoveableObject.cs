@@ -35,10 +35,10 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.FreezeRotationY;
         }
-
+        Debug.DrawRay(transform.position, objBase.forward * 50);
         if (Physics.Raycast(transform.position, objBase.forward, out hit))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") || hit.collider.GetComponentInParent<MoveableObject>())
                 rb.useGravity = false;
 
             if (!rb.useGravity)
