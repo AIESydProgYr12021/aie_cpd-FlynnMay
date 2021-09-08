@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamSpawner : CustomGameObject
+public class BeamSpawner : CustomGameObject, IBeamSender
 {
     public float spawnerDelay = 0.5f;
     public float timer = 0;
     public GameObject beam;
 
-    public List<CustomGameObject> foundInteractors = new List<CustomGameObject>();
+    List<IBeamSender> visited = new List<IBeamSender>();
+    List<CustomGameObject> found = new List<CustomGameObject>();
+
+    public List<CustomGameObject> lastFound = new List<CustomGameObject>();
+    public List<IBeamSender> Visited { get => visited; set => visited = value; }
+    public List<CustomGameObject> Found { get => found; set => found = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -20,19 +25,9 @@ public class BeamSpawner : CustomGameObject
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent != null)
-            return;
+        SendBeam(transform.position, transform.forward);
 
-        RaycastHit hit;
-        IBeamInteractor beamCollider;
-
-        FindInteractors(transform.position, transform.forward, out hit, out beamCollider);
-
-        if (beamCollider == null)
-        {
-            RunExit();
-        }
-
+        RunExit();
 
         timer += Time.deltaTime;
 
@@ -44,12 +39,12 @@ public class BeamSpawner : CustomGameObject
             LerpToVector lerpToVector = beamObj.GetComponent<LerpToVector>();
             FollowPath followPath = beamObj.GetComponent<FollowPath>();
 
-            if (foundInteractors.Count <= 0)
+            if (found.Count <= 0)
             {
                 followPath.path.Add(transform.position + (transform.forward * 10));
             }
 
-            foreach (var interactor in foundInteractors)
+            foreach (var interactor in found)
             {
                 followPath.path.Add(interactor.gameObject.transform.position);
             }
@@ -61,6 +56,8 @@ public class BeamSpawner : CustomGameObject
             lerpToVector.targetPosition = followPath.path[0];
             lerpToVector.lerpTime = 0.0f;
         }
+        lastFound.Clear();
+        lastFound.AddRange(found);
     }
 
     public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out IBeamInteractor beamInteractor)
@@ -79,26 +76,33 @@ public class BeamSpawner : CustomGameObject
 
             if (beamInteractor != null)
             {
-                if (!foundInteractors.Contains(cObj))
-                    foundInteractors.Add(cObj);
+                if (!lastFound.Contains(cObj))
+                    lastFound.Add(cObj);
 
                 if (!beamInteractor.Interacting)
                 {
-                    beamInteractor.OnBeamEnter(hit, this, pos);
+                    beamInteractor.OnBeamEnter(hit, pos);
                     beamInteractor.Interacting = true;
                 }
                 else
                 {
-                    beamInteractor.OnBeamStay(hit, this, pos);
+                    beamInteractor.OnBeamStay(hit, pos);
                 }
+            }
+            else
+            {
+                RunExit();
             }
         }
     }
 
     private void RunExit()
     {
-        foreach (var interactorObj in foundInteractors)
+        foreach (var interactorObj in lastFound)
         {
+            if (found.Contains(interactorObj))
+                continue;
+
             IBeamInteractor interactor = interactorObj.GetComponent<IBeamInteractor>();
             if (interactor != null)
             {
@@ -109,7 +113,50 @@ public class BeamSpawner : CustomGameObject
                 }
             }
         }
+    }
 
-        foundInteractors.Clear();
+    public List<CustomGameObject> SendBeam(Vector3 pos, Vector3 dir)
+    {
+        found.Clear();
+
+        if (visited.Contains(this))
+            return found;
+
+        visited.Add(this);
+        RaycastHit hit;
+        if (Physics.Raycast(pos, dir, out hit))
+        {
+            //found.Add(this);
+            var other = hit.collider.gameObject;
+            var otherCustom = other.GetComponentInParent<CustomGameObject>();
+            var otherInteractor = other.GetComponent<IBeamInteractor>();
+            var otherSender = other.GetComponent<IBeamSender>();
+            if (otherInteractor != null)
+            {
+                if (!otherInteractor.Interacting)
+                {
+                    otherInteractor.OnBeamEnter(hit, pos);
+                    otherInteractor.Interacting = true;
+                }
+                else
+                {
+                    otherInteractor.OnBeamStay(hit, pos);
+                }
+                found.Add(otherCustom);
+            }
+
+            if (otherSender != null)
+            {
+                foreach (var cObj in otherSender.Found)
+                {
+                    if (!found.Contains(cObj))
+                    {
+                        found.Add(cObj);
+                    }
+                }
+            }
+        }
+        visited.Clear();
+        return found;
     }
 }

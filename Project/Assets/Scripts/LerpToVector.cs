@@ -22,7 +22,6 @@ public class LerpToVector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         lerpTime += Time.deltaTime * lerpSpeed;
 
         if (lerpTime > 1.0f)

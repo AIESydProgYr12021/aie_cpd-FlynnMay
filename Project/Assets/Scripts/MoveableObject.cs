@@ -48,7 +48,7 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
         }
     }
 
-    public void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
+    public void OnBeamEnter(RaycastHit hit, Vector3 lastSentPos)
     {
         throw new System.NotImplementedException();
     }
@@ -58,7 +58,7 @@ public class MoveableObject : CustomGameObject, IBeamInteractor, IPlayerInteract
         throw new System.NotImplementedException();
     }
 
-    public void OnBeamStay(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
+    public void OnBeamStay(RaycastHit hit, Vector3 lastSentPos)
     {
         throw new System.NotImplementedException();
     }

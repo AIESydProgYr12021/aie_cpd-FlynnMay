@@ -23,12 +23,12 @@ public class LightController : CustomGameObject, IBeamInteractor
         lightOn = false;
     }
 
-    public void OnBeamEnter(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
+    public void OnBeamEnter(RaycastHit hit, Vector3 lastSentPos)
     {
         lightOn = true;
     }
 
-    public void OnBeamStay(RaycastHit hit, BeamSpawner sender, Vector3 lastSentPos)
+    public void OnBeamStay(RaycastHit hit,  Vector3 lastSentPos)
     {
         lightOn = true;
     }

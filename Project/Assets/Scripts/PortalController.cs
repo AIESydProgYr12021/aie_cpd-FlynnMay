@@ -21,6 +21,25 @@ public class PortalController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        
+        if (other.GetComponentInParent<MoveableObject>())
+        {
+            var customGameObject = other.gameObject.GetComponentInParent<CustomGameObject>();
+            var rb = other.gameObject.GetComponentInParent<Rigidbody>();
+            if (customGameObject && rb)
+            {
+                rb.gameObject.transform.position = customGameObject.startPos;
+                rb.gameObject.transform.rotation = customGameObject.startRot;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+
+            var lerptoVector = other.GetComponent<LerpToVector>();
+            if (lerptoVector)
+            {
+                lerptoVector.enabled = false;
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
