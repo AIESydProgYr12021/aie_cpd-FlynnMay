@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
 {
+    public GameObject emptyOBJ;
+
     List<IBeamSender> visited = new List<IBeamSender>();
     List<CustomGameObject> found = new List<CustomGameObject>();
 
@@ -60,6 +62,11 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
                 found.Add(otherCustom);
             }
 
+            if (otherCustom != null)
+            {
+                found.Add(otherCustom);
+            }
+
             if (otherSender != null)
             {
                 foreach (var cObj in otherSender.Found)
@@ -80,7 +87,16 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
         Vector3 incomingVec = hit.point - lastSentPos;
         Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
 
-        // Stack Overflow -- Risk -> reflect loop
         SendBeam(transform.position, reflectVec);
+
+        if (found.Count <= 0)
+        {
+            if (emptyOBJ)
+            {
+                var eCObj = Instantiate(emptyOBJ);
+                eCObj.transform.position = reflectVec.normalized * 4;
+                found.Add(eCObj.GetComponentInChildren<CustomGameObject>());
+            }
+        }
     }
 }

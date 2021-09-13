@@ -19,20 +19,4 @@ public class CustomGameObject : MonoBehaviour
     {
         rb = GetComponentInParent<Rigidbody>();
     }
-    
-    // Object Drop Fix, No work-o
-    //public void LateUpdate()
-    //{
-    //    if (rb == null)
-    //        return;
-
-    //    if (Physics.Raycast(rb.transform.position, -rb.transform.up, out RaycastHit hit))
-    //    {
-    //        if (hit.collider.CompareTag("Player"))
-    //        {
-    //            rb.transform.position = new Vector3(rb.transform.position.x, startPos.y, rb.transform.position.z);
-    //            Debug.Log("Player Detected, Can't Drop Obj");
-    //        }
-    //    }
-    //}
 }

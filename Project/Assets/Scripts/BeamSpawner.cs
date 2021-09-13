@@ -8,6 +8,7 @@ public class BeamSpawner : CustomGameObject, IBeamSender
     public float spawnerDelay = 0.5f;
     public float timer = 0;
     public GameObject beam;
+    public GameObject emptyOBJ;
 
     List<IBeamSender> visited = new List<IBeamSender>();
     List<CustomGameObject> found = new List<CustomGameObject>();
@@ -41,7 +42,7 @@ public class BeamSpawner : CustomGameObject, IBeamSender
 
             if (found.Count <= 0)
             {
-                followPath.path.Add(transform.position + (transform.forward * 10));
+                followPath.path.Add(transform.position + (transform.forward * 6));
             }
 
             foreach (var interactor in found)
@@ -131,6 +132,7 @@ public class BeamSpawner : CustomGameObject, IBeamSender
             var otherCustom = other.GetComponentInParent<CustomGameObject>();
             var otherInteractor = other.GetComponent<IBeamInteractor>();
             var otherSender = other.GetComponent<IBeamSender>();
+
             if (otherInteractor != null)
             {
                 if (!otherInteractor.Interacting)
@@ -142,6 +144,11 @@ public class BeamSpawner : CustomGameObject, IBeamSender
                 {
                     otherInteractor.OnBeamStay(hit, pos);
                 }
+                found.Add(otherCustom);
+            }
+
+            if (otherCustom != null)
+            {
                 found.Add(otherCustom);
             }
 

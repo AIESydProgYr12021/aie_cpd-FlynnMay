@@ -24,6 +24,15 @@ public class BeamController : MonoBehaviour
     void Update()
     {
         //rb.AddForce(gameObject.transform.forward * speed * Time.deltaTime, ForceMode.Impulse);
+        if(followPath.path.Count == followPath.pathIterator)
+        {
+            var trails = GetComponentsInChildren<TrailRenderer>();
+            foreach (var trail in trails)
+            {
+                var color = trail.material.color;
+                trail.material.color = new Color(color.r, color.g, color.b, 1.0f - lerpToVector.lerpTime);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,6 +47,6 @@ public class BeamController : MonoBehaviour
     private void DestroyBeam()
     {
         Destroy(gameObject);
-        
+
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ClickToMove : MonoBehaviour
+public class ClickToMove : CustomGameObject
 {
     NavMeshAgent agent;
     public GameObject dropParticle;
@@ -16,6 +16,7 @@ public class ClickToMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         agent = GetComponent<NavMeshAgent>();
     }
 

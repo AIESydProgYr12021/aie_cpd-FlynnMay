@@ -8,7 +8,7 @@ public class FollowPath : MonoBehaviour
     public LerpToVector lerpToVector;
     public List<Vector3> path = new List<Vector3>();
     public List<Action> OnPathEnd = new List<Action>();
-    int i = 0;
+    public int pathIterator = 0;
 
     void Awake()
     {
@@ -17,12 +17,12 @@ public class FollowPath : MonoBehaviour
         lerpToVector.targetPosition = transform.position;
 
         lerpToVector.OnTargetReached.Add(() => {
-            if (i >= path.Count)
+            if (pathIterator >= path.Count)
                 return;
 
-            lerpToVector.targetPosition = path[i];
+            lerpToVector.targetPosition = path[pathIterator];
             lerpToVector.lerpTime = 0;
-            i++;
+            pathIterator++;
 
         }); ;
     }
