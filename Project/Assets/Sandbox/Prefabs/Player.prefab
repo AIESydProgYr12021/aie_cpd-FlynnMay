@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropParticle: {fileID: 9217858652211376569, guid: b7d15c3d071baa24bbf3f440f8f12ab1, type: 3}
+  hoverParticle: {fileID: 7920067795346233619, guid: d1942ed9175f213409b3957f404ef1b0, type: 3}
 --- !u!195 &2383006005917458000
 NavMeshAgent:
   m_ObjectHideFlags: 0

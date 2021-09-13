@@ -38,6 +38,7 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
 
         visited.Add(this);
         RaycastHit hit;
+        Debug.DrawRay(pos, dir * 50);
         if (Physics.Raycast(pos, dir, out hit))
         {
             //found.Add(this);

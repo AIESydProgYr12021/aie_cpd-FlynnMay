@@ -8,6 +8,11 @@ public class ClickToMove : MonoBehaviour
 {
     NavMeshAgent agent;
     public GameObject dropParticle;
+    public GameObject hoverParticle;
+    Vector3 destination;
+
+    GameObject lastHovered;
+    GameObject lastHoveredParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +28,29 @@ public class ClickToMove : MonoBehaviour
         layerMask = ~layerMask;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            //Outline outline = hit.collider.GetComponent<Outline>();
-            //outline.enabled = true;
+            if (hit.collider.CompareTag("void"))
+            {
+                if (lastHovered)
+                {
+                    lastHovered = null;
+                }
+
+                if (lastHoveredParticle)
+                {
+                    Destroy(lastHoveredParticle);
+                    lastHoveredParticle = null;
+                }
+            }
+
             if (!hit.collider.CompareTag("GroundTile"))
                 return;
 
+            Vector3 pos = hit.collider.gameObject.transform.position;
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 pos = hit.collider.gameObject.transform.position;
-                agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z));
+                destination = new Vector3(pos.x, transform.position.y, pos.z);
+                agent.SetDestination(destination);
+                agent.velocity = Vector3.zero;
                 if (dropParticle)
                 {
                     var drop = Instantiate(dropParticle, null);
@@ -39,6 +58,35 @@ public class ClickToMove : MonoBehaviour
                 }
                 agent.path.ClearCorners();
             }
+
+            var hover = hit.collider.gameObject;
+            if (hover)
+            {
+                if (hover != lastHovered)
+                {
+                    GameObject hoverParticleObj = null;
+                    if (hoverParticle)
+                    {
+                        hoverParticleObj = Instantiate(this.hoverParticle, null);
+                        hoverParticleObj.transform.position = new Vector3(pos.x, 0.1f, pos.z);
+                    }
+
+                    if (lastHovered)
+                    {
+                        lastHovered = null;
+                    }
+
+                    if (lastHoveredParticle)
+                    {
+                        Destroy(lastHoveredParticle);
+                        lastHoveredParticle = null;
+                    }
+
+                    lastHovered = hover;
+                    lastHoveredParticle = hoverParticleObj;
+                }
+            }
+
         }
     }
     private void OnCollisionEnter(Collision collision)

@@ -48,7 +48,7 @@ public class BeamSpawner : CustomGameObject, IBeamSender
             {
                 followPath.path.Add(interactor.gameObject.transform.position);
             }
-
+            followPath.OnPathEnd.Add(() => Destroy(beamObj));
             beamObj.transform.position = transform.position;
             lerpToVector.currentPosition = beamObj.transform.position;
             beamObj.transform.forward = transform.forward;

@@ -21,7 +21,15 @@ public class PortalController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
-        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        foreach (var act in onPortalStay)
+        {
+            act?.Invoke();
+        }
+
         if (other.GetComponentInParent<MoveableObject>())
         {
             var customGameObject = other.gameObject.GetComponentInParent<CustomGameObject>();
@@ -32,6 +40,7 @@ public class PortalController : MonoBehaviour
                 rb.gameObject.transform.rotation = customGameObject.startRot;
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
+                rb.constraints = RigidbodyConstraints.FreezeRotationY;
             }
 
             var lerptoVector = other.GetComponent<LerpToVector>();
@@ -39,14 +48,6 @@ public class PortalController : MonoBehaviour
             {
                 lerptoVector.enabled = false;
             }
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        foreach (var act in onPortalStay)
-        {
-            act?.Invoke();
         }
     }
 
