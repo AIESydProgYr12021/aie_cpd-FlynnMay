@@ -144,15 +144,14 @@ public class BeamSpawner : CustomGameObject, IBeamSender
                 {
                     otherInteractor.OnBeamStay(hit, pos);
                 }
+
                 found.Add(otherCustom);
             }
-
-            if (otherCustom != null)
+            else if (otherCustom != null)
             {
                 found.Add(otherCustom);
             }
-
-            if (otherSender != null)
+            else if (otherSender != null)
             {
                 foreach (var cObj in otherSender.Found)
                 {

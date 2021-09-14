@@ -94,8 +94,10 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
             if (emptyOBJ)
             {
                 var eCObj = Instantiate(emptyOBJ);
-                eCObj.transform.position = reflectVec.normalized * 4;
-                found.Add(eCObj.GetComponentInChildren<CustomGameObject>());
+                eCObj.transform.position = transform.position + (reflectVec.normalized * 4);
+                var interactor = eCObj.GetComponentInChildren<IBeamInteractor>();
+                interactor.Interacting = true;
+                found.Add(eCObj.GetComponent<CustomGameObject>());
             }
         }
     }
