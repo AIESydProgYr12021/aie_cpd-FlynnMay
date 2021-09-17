@@ -61,12 +61,10 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
                 }
                 found.Add(otherCustom);
             }
-
             if (otherCustom != null)
             {
                 found.Add(otherCustom);
             }
-
             if (otherSender != null)
             {
                 foreach (var cObj in otherSender.Found)
@@ -95,9 +93,7 @@ public class BeamReflector : CustomGameObject, IBeamInteractor, IBeamSender
             {
                 var eCObj = Instantiate(emptyOBJ);
                 eCObj.transform.position = transform.position + (reflectVec.normalized * 4);
-                var interactor = eCObj.GetComponentInChildren<IBeamInteractor>();
-                interactor.Interacting = true;
-                found.Add(eCObj.GetComponent<CustomGameObject>());
+                found.Add(eCObj.GetComponentInChildren<CustomGameObject>());
             }
         }
     }

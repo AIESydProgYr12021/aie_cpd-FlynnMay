@@ -47,6 +47,53 @@ public class ClickToMove : CustomGameObject
                 return;
 
             Vector3 pos = hit.collider.gameObject.transform.position;
+
+            if ((pos.x != transform.position.x && pos.z != transform.position.z))
+                return;
+
+            var dirToPos = (new Vector3(pos.x, transform.position.y, pos.z) - transform.position).normalized;
+
+            dirToPos.x = Math.Abs(dirToPos.x);
+            dirToPos.y = Math.Abs(dirToPos.y);
+            dirToPos.z = Math.Abs(dirToPos.z);
+
+            if (!(Vector3.Dot(new Vector3(1, transform.position.y, 0), dirToPos) >= 0.75f ||
+                Vector3.Dot(new Vector3(0, transform.position.y, 1), dirToPos) >= 0.75f) && 
+                !((pos.z == transform.position.z) && (pos.z == transform.position.z)))
+            {
+                return;
+            }
+
+            var checkVec = pos - transform.position;
+            checkVec.y = 0.0f;
+
+            var normalized = checkVec.normalized;
+            //checkVec.Normalize();
+            
+            for (int i = 1; i <= Math.Abs(checkVec.x); i++)
+            {
+                RaycastHit checkHit;
+                if (Physics.Raycast(new Vector3(transform.position.x + i * normalized.x, 1.0f, transform.position.z), Vector3.down, out checkHit))
+                {
+                    if (checkHit.collider.CompareTag("void"))
+                    {
+                        return;
+                    }
+                }
+            }
+            
+            for (int i = 1; i <= Math.Abs(checkVec.z); i++)
+            {
+                RaycastHit checkHit;
+                if (Physics.Raycast(new Vector3(transform.position.x, 1.0f, transform.position.z + i * normalized.z), Vector3.down, out checkHit))
+                {
+                    if (checkHit.collider.CompareTag("void"))
+                    {
+                        return;
+                    }
+                }
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 destination = new Vector3(pos.x, transform.position.y, pos.z);

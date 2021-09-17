@@ -28,6 +28,9 @@ public class BeamSpawner : CustomGameObject, IBeamSender
     {
         SendBeam(transform.position, transform.forward);
 
+        found.RemoveAll(item => item == null);
+        lastFound.RemoveAll(item => item == null);
+
         RunExit();
 
         timer += Time.deltaTime;
@@ -61,41 +64,41 @@ public class BeamSpawner : CustomGameObject, IBeamSender
         lastFound.AddRange(found);
     }
 
-    public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out IBeamInteractor beamInteractor)
-    {
-        beamInteractor = null;
+    //public void FindInteractors(Vector3 pos, Vector3 dir, out RaycastHit hit, out IBeamInteractor beamInteractor)
+    //{
+    //    beamInteractor = null;
 
-        Debug.DrawRay(pos, dir, Color.green);
-        if (Physics.Raycast(pos, dir, out hit))
-        {
-            var obj = hit.collider.gameObject;
-            beamInteractor = obj.GetComponent<IBeamInteractor>();
-            CustomGameObject cObj = obj.GetComponent<CustomGameObject>();
+    //    Debug.DrawRay(pos, dir, Color.green);
+    //    if (Physics.Raycast(pos, dir, out hit))
+    //    {
+    //        var obj = hit.collider.gameObject;
+    //        beamInteractor = obj.GetComponent<IBeamInteractor>();
+    //        CustomGameObject cObj = obj.GetComponent<CustomGameObject>();
 
-            if (cObj == null)
-                return;
+    //        if (cObj == null)
+    //            return;
 
-            if (beamInteractor != null)
-            {
-                if (!lastFound.Contains(cObj))
-                    lastFound.Add(cObj);
+    //        if (beamInteractor != null)
+    //        {
+    //            if (!lastFound.Contains(cObj))
+    //                lastFound.Add(cObj);
 
-                if (!beamInteractor.Interacting)
-                {
-                    beamInteractor.OnBeamEnter(hit, pos);
-                    beamInteractor.Interacting = true;
-                }
-                else
-                {
-                    beamInteractor.OnBeamStay(hit, pos);
-                }
-            }
-            else
-            {
-                RunExit();
-            }
-        }
-    }
+    //            if (!beamInteractor.Interacting)
+    //            {
+    //                beamInteractor.OnBeamEnter(hit, pos);
+    //                beamInteractor.Interacting = true;
+    //            }
+    //            else
+    //            {
+    //                beamInteractor.OnBeamStay(hit, pos);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            RunExit();
+    //        }
+    //    }
+    //}
 
     private void RunExit()
     {
@@ -147,11 +150,11 @@ public class BeamSpawner : CustomGameObject, IBeamSender
 
                 found.Add(otherCustom);
             }
-            else if (otherCustom != null)
+            if (otherCustom != null)
             {
                 found.Add(otherCustom);
             }
-            else if (otherSender != null)
+            if (otherSender != null)
             {
                 foreach (var cObj in otherSender.Found)
                 {
