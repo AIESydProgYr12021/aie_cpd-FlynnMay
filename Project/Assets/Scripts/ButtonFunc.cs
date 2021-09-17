@@ -7,17 +7,17 @@ public class ButtonFunc : MonoBehaviour
 {
     public void LoadLevel(int level)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene("level " + level);
     }
     
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(GlobalControl.Instance.prevLevelIndex + 1);
+        SceneManager.LoadScene("level " + (GlobalControl.Instance.prevLevelIndex + 1));
     }
     
     public void LoadLastLevel()
     {
-        SceneManager.LoadScene(GlobalControl.Instance.prevLevelIndex);
+        SceneManager.LoadScene("level " + GlobalControl.Instance.prevLevelIndex);
     }
 
     public void LoadSceneFromString(string scene)

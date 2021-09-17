@@ -19,7 +19,10 @@ public class PortalController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GlobalControl.Instance.prevLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            string lvlName = SceneManager.GetActiveScene().name.ToLower();
+            string id = lvlName.Replace("level", "").Trim();
+            int lvlnum = Int32.Parse(id);
+            GlobalControl.Instance.prevLevelIndex = lvlnum;
             SceneManager.LoadScene("LevelComplete");
         }
     }
