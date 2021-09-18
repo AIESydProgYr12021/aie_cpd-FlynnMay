@@ -9,12 +9,20 @@ public class ButtonFunc : MonoBehaviour
     {
         SceneManager.LoadScene("level " + level);
     }
-    
+
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene("level " + (GlobalControl.Instance.prevLevelIndex + 1));
+        string scene = "level " + (GlobalControl.Instance.prevLevelIndex + 1);
+        if (GlobalControl.Instance.scenesInBuild.Contains(scene))
+        {
+            SceneManager.LoadScene(scene);
+        }
+        else
+        {
+            LoadMenu();
+        }
     }
-    
+
     public void LoadLastLevel()
     {
         SceneManager.LoadScene("level " + GlobalControl.Instance.prevLevelIndex);

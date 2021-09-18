@@ -41,6 +41,7 @@ public class ClickToMove : CustomGameObject
                     Destroy(lastHoveredParticle);
                     lastHoveredParticle = null;
                 }
+                return;
             }
 
             if (!hit.collider.CompareTag("GroundTile"))
@@ -48,7 +49,7 @@ public class ClickToMove : CustomGameObject
 
             Vector3 pos = hit.collider.gameObject.transform.position;
 
-            if ((pos.x != transform.position.x && pos.z != transform.position.z))
+            if (((int)pos.x != (int)transform.position.x && (int)pos.z != (int)transform.position.z))
                 return;
 
             var dirToPos = (new Vector3(pos.x, transform.position.y, pos.z) - transform.position).normalized;

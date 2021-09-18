@@ -3,13 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ButtonHandler : ButtonFunc
 {
     GridLayoutGroup gridLayoutGroup;
+    public GameObject lvlButton;
     void Start()
     {
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
+
+        var scenes = GlobalControl.Instance.scenesInBuild;
+
+        foreach (var scene in scenes)
+        {
+            if (scene.Contains("level") && scene.Any(char.IsDigit))
+            {
+                Instantiate(lvlButton, gridLayoutGroup.transform);
+            }
+        }
 
         var buttons = gridLayoutGroup.GetComponentsInChildren<Button>();
         for (int i = 0; i < buttons.Length; i++)
