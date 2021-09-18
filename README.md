@@ -1,15 +1,15 @@
 # Journey Through Crystal Peaks
 
 ## About the Game
-Solve puzzles by using the magical wisps to light up the world and travel to new lands. Journey Through Crystal Peaks is a lazer maze game, styled similar to that of monument valley. 
+Solve puzzles by using the magical wisps to light up the world and travel to new lands. Journey Through Crystal Peaks is a lazer maze game, in a similar style of monument valley. 
 
 ### Contributors:
 Contributors to the project are strictly limated to AIE Students as part of their group work project.
 
 Members:
  - Flynn May: programmer
- - Thomas Greene: designer
- - Ruby Andreatta: designer
+ - Thomas Greene: play testing
+ - Ruby Andreatta: play testing
 
 ## Build Steps:
 The project can currently be built for windows, android and webgl in the following ways:
@@ -29,8 +29,8 @@ The project can currently be built for windows, android and webgl in the followi
     * PC Build: `builds/pc/YourGame.exe` 
     * WebGL Build: `builds/web/index.html`
 
-## Daily Builds:
-Daily builds of the project should be placed on the local campus network drive
+## Builds:
+* **Web:** https://aiesydprogyr12021.github.io/aie_cpd-FlynnMay/.
 
 
 
