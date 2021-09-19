@@ -1,11 +1,11 @@
 # PC - Keyboard / Mouse
-describe controls / inputs
+ Left click to move.
 
 
 # Controller
-describe controls / inputs
+n/a
 
 
 # Mobile / Touch
-describe controls / inputs
+Touch screen to move to touched pos.
 
