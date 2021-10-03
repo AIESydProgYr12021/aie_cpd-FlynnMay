@@ -59,7 +59,7 @@ public class ClickToMove : CustomGameObject
             dirToPos.z = Math.Abs(dirToPos.z);
 
             if (!(Vector3.Dot(new Vector3(1, transform.position.y, 0), dirToPos) >= 0.75f ||
-                Vector3.Dot(new Vector3(0, transform.position.y, 1), dirToPos) >= 0.75f) && 
+                Vector3.Dot(new Vector3(0, transform.position.y, 1), dirToPos) >= 0.75f) &&
                 !((pos.z == transform.position.z) && (pos.z == transform.position.z)))
             {
                 return;
@@ -70,7 +70,7 @@ public class ClickToMove : CustomGameObject
 
             var normalized = checkVec.normalized;
             //checkVec.Normalize();
-            
+
             for (int i = 1; i <= Math.Abs(checkVec.x); i++)
             {
                 RaycastHit checkHit;
@@ -82,7 +82,7 @@ public class ClickToMove : CustomGameObject
                     }
                 }
             }
-            
+
             for (int i = 1; i <= Math.Abs(checkVec.z); i++)
             {
                 RaycastHit checkHit;
