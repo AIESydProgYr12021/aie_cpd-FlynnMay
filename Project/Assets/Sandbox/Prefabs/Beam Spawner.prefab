@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
-  spawnerDelay: 1
+  spawnerDelay: 2
   timer: 0
   beam: {fileID: 9109645535627537209, guid: 4251924819e6c82419d7c6825bd0b025, type: 3}
   emptyOBJ: {fileID: 3347921329585334373, guid: 7e62c3b7cada17c44ab4ac50250d8de2, type: 3}
