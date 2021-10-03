@@ -9,6 +9,7 @@ public class GlobalControl : MonoBehaviour
 
     public int prevLevelIndex = 0;
     public List<string> scenesInBuild = new List<string>();
+    public AudioManager audioManager;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class GlobalControl : MonoBehaviour
 
     void OnInstanceStart()
     {
+        audioManager = GetComponent<AudioManager>();
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             scenesInBuild.Add(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)));

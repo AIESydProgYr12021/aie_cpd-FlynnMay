@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8062157978083185962}
   - component: {fileID: 8062157978083185963}
+  - component: {fileID: 2062765119}
   m_Layer: 0
   m_Name: GlobalController
   m_TagString: Untagged
@@ -44,3 +45,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevLevelIndex: 0
+  scenesInBuild: []
+  audioManager: {fileID: 0}
+--- !u!114 &2062765119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062157978083185960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73b416298aa4ae49bbb22a82febccd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: ae74285c0aca579488ce6db0a0c83ed8, type: 3}
+    loop: 1
+    mixerGroup: {fileID: 1039868354040299450, guid: 6f397a766c2f8864c8aea3526e38a840, type: 2}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: 6c16446bd032c454ba8f8defa58e1c82, type: 3}
+    loop: 0
+    mixerGroup: {fileID: -6094970779502212, guid: 6f397a766c2f8864c8aea3526e38a840, type: 2}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

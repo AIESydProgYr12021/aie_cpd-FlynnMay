@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource source;
+    public List<Sound> sounds = new List<Sound>();
+    void Awake()
+    {
+        foreach (var s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.mixerGroup;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+    }
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
+        Play("Theme");
     }
-    public void TogglePlaying()
+
+    public void Play(string name)
     {
-        if (source.isPlaying)
-            source.Stop();
-        else
-            source.Play();
+        var s = sounds.Find(sound => sound.name == name);
+
+        if (s == null)
+            return;
+        
+        s.source.Play();
     }
-    
-    public void Play()
-    {
-        source.Play();
-    }
+
 }

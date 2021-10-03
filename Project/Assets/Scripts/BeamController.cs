@@ -14,10 +14,18 @@ public class BeamController : MonoBehaviour
     void Start()
     {
         //rb = GetComponent<Rigidbody>();
+        GlobalControl.Instance.audioManager.Play("Wind");
         followPath = GetComponent<FollowPath>();
         lerpToVector = followPath.lerpToVector;
         lerpToVector.lerpSpeed = speed;
         followPath.OnPathEnd.Add(DestroyBeam);
+        lerpToVector.OnTargetReached.Add(PlayWind);
+        PlayWind();
+    }
+
+    private void PlayWind()
+    {
+        GlobalControl.Instance.audioManager.Play("Wind");
     }
 
     // Update is called once per frame
