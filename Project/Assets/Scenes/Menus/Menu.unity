@@ -245,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 4228378462345885891, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 7281b2fa07f27224585bc3055f0001b2, type: 3}
+      objectReference: {fileID: 2800000, guid: 91992ef1f94cac64392ae36f387b5385, type: 3}
     - target: {fileID: 4228378462345885894, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
       propertyPath: m_Name
       value: IconButton (2)
@@ -389,7 +389,7 @@ PrefabInstance:
     - target: {fileID: 4228378462345885891, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 011dbcdc2afce5a4282cdfeeabd8f734, type: 3}
+      objectReference: {fileID: 2800000, guid: 905e10948eacef941a937083f6e89327, type: 3}
     - target: {fileID: 4228378462345885894, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
       propertyPath: m_Name
       value: IconButton (1)
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: e8863d2637f162244a0b9c08880b1e43, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0af1641a25ea40a42a70e190e091ae0b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1260,6 +1260,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4228378462345885891, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 6d30a519d636c324fb9d4c69365a6333, type: 3}
     - target: {fileID: 4228378462345885894, guid: 71c1a45273271f544a71833206fb53d1, type: 3}
       propertyPath: m_Name
       value: IconButton
