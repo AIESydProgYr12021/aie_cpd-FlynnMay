@@ -5,19 +5,20 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public Grid floorGrid;
-    Dictionary<int, Dictionary<int, int>> gridProps;
+    public Grid propGrid;
     int rows, cols;
 
     private void Awake()
     {
-        SetGrid();
-        LoadGrid(floorGrid);
+        BuildGrid();
     }
 
-    private void SetGrid()
+    private void BuildGrid()
     {
-        floorGrid = new Grid(0, 50, 50);
         floorGrid.ClearGrid();
+        propGrid.ClearGrid();
+        LoadGrid(floorGrid);
+        LoadGrid(propGrid);
     }
 
     private void LoadGrid(Grid grid)
@@ -46,7 +47,7 @@ public class GridManager : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         if (floorGrid.GridMap == null)
-            SetGrid();
+            BuildGrid();
 
         var pos = Vector3.zero;
         pos.y = floorGrid.Height;
