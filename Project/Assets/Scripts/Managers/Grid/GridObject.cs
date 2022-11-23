@@ -6,4 +6,5 @@ using UnityEngine;
 public class GridObject : ScriptableObject
 {
     public GameObject prefab;
+    public int Index { get; set; } = 0;
 }

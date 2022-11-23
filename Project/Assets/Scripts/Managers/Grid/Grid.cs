@@ -14,6 +14,7 @@ public struct Grid
     [SerializeField] int rows;
     [SerializeField] private int columns;
     private List<GridObject> gridObjects;
+
     public Dictionary<int, Dictionary<int, int>> GridMap { get => gridMap; set => gridMap = value; }
     public int Height { get => height; set => height = value; }
     public List<GridObject> GridObjects { get => gridObjects; set => gridObjects = value; }
@@ -30,6 +31,29 @@ public struct Grid
         gridMap = (map ?? new Dictionary<int, Dictionary<int, int>>());
     }
 
+    public Grid(int height, List<GridObject> gridObjects, int[,] map) : this()
+    {
+        this.height = height;
+        rows = map.GetLength(0);
+        columns = map.GetLength(1);
+        this.gridObjects = gridObjects;
+
+        SetGrid(map);
+    }
+
+    public void SetGrid(int[,] map)
+    {
+        GridMap = new Dictionary<int, Dictionary<int, int>>();
+        for (int z = 0; z < rows; z++)
+        {
+            GridMap[z] = new Dictionary<int, int>();
+            for (int x = 0; x < columns; x++)
+            {
+                GridMap[z][x] = map[z, x];
+            }
+        }
+    }
+
     public void ClearGrid()
     {
         GridMap = new Dictionary<int, Dictionary<int, int>>();
@@ -38,7 +62,7 @@ public struct Grid
             GridMap[z] = new Dictionary<int, int>();
             for (int x = 0; x < columns; x++)
             {
-                GridMap[z][x] = 0;
+                GridMap[z][x] = -1;
             }
         }
     }

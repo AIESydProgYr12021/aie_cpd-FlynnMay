@@ -15,6 +15,18 @@ public class GridObjectContainer : ScriptableObject
             if (instance == null)
             {
                 instance = Resources.Load<GridObjectContainer>("GridObjectContainer");
+
+                for (int i = 0; i < instance.gridObjects.Count; i++)
+                {
+                    GridObject gridObject = instance.gridObjects[i];
+                    gridObject.Index = i;
+                }
+                
+                for (int i = 0; i < instance.gridProps.Count; i++)
+                {
+                    GridObject gridProp = instance.gridProps[i];
+                    gridProp.Index = i;
+                }
             }
             return instance;
         }

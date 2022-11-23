@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class GridManager : MonoBehaviour
 {
@@ -12,17 +13,15 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
-        Map map = new Map(10, 10);
-        Map.Serialize(map, 0);
         BuildGrid();
         LoadGrid();
     }
 
     private void BuildGrid()
     {
-        floorGrid = new Grid(0, rows, cols, GridObjectContainer.GetGridObjects());
+        Map map = Map.Deserialize(0);
+        floorGrid = new Grid(0, GridObjectContainer.GetGridObjects(), map.floor);
         propGrid = new Grid(1, rows, cols, GridObjectContainer.GetGridProps());
-        floorGrid.ClearGrid();
         propGrid.ClearGrid();
     }
 
@@ -45,7 +44,7 @@ public class GridManager : MonoBehaviour
                 pos.x = x;
                 pos.z = z;
 
-                int index = grid.GridMap[z][x];
+                int index = grid.GridMap[z][x] - 1;
                 if (index < 0)
                     continue;
 
@@ -80,26 +79,26 @@ public class GridManager : MonoBehaviour
 public class Map
 {
     public int a = 0;
-    public int[][] grid;
+    public int[,] floor;
+    public int[,] props;
+
+    public Map() { }
+
     public Map(int row, int col)
     {
-        grid = new int[row][];
-        for (int y = 0; y < grid.GetLength(0); y++)
-        {
-            grid[y] = new int[col];
-            for (int x = 0; x < grid.GetLength(1); x++)
-            {
-                grid[y][x] = 0;
-            }
-        }
+        floor = new int[row, col];
+        props = new int[row, col];
     }
 
     public static void Serialize(Map map, int levelNumber)
     {
-        string json = JsonUtility.ToJson(map, true);
         string path = $"{Application.streamingAssetsPath}/{levelNumber}.json";
+        JsonHelpers.WriteToJsonFile(path, map);
+    }
 
-        using (StreamWriter streamWriter = File.CreateText(path))
-            streamWriter.Write(json);
+    public static Map Deserialize(int levelNumber)
+    {
+        string path = $"{Application.streamingAssetsPath}/{levelNumber}.json";
+        return JsonHelpers.ReadFromJsonFile<Map>(path);
     }
 }
