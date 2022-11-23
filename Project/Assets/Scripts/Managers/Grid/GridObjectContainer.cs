@@ -27,6 +27,6 @@ public class GridObjectContainer : ScriptableObject
     
     public static List<GridObject> GetGridProps()
     {
-        return Instance.gridObjects;
+        return Instance.gridProps;
     }
 }

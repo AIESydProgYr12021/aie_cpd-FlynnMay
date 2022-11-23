@@ -235,14 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abf828462e2cce4ba42e9127bbba8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorGrid:
-    height: 0
-    rows: 50
-    columns: 50
-  propGrid:
-    height: 0
-    rows: 0
-    columns: 0
+  rows: 50
+  cols: 50
 --- !u!4 &1105730569
 Transform:
   m_ObjectHideFlags: 0
